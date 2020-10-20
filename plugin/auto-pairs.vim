@@ -112,6 +112,9 @@ endif
 let s:Left = s:Go."\<LEFT>"
 let s:Right = s:Go."\<RIGHT>"
 
+if !exists('g:AutoPairsOnlyWhitespace')
+  let g:AutoPairsOnlyWhitespace = 0
+end
 
 
 
@@ -208,6 +211,11 @@ func! AutoPairsInsert(key)
   if before[-1:-1] == '\'
     return a:key
   end
+
+  " Ignore auto close if set and current character is not whitespace
+  if g:AutoPairsOnlyWhitespace && after[-1:-1] =~ '\v\S'
+    return a:key
+  endif
 
   " check open pairs
   for [open, close, opt] in b:AutoPairsList

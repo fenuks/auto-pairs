@@ -248,6 +248,13 @@ Options
         Map <M-(> <M-)> <M-[> <M-]> <M-{> <M-}> <M-"> <M-'> to
         move character under the cursor to the pair.
 
+*   g:AutoPairsOnlyWhitespace
+
+        Default : 0
+
+        Set it to 1 to skip autopairs unless the following character is
+        whitespace. This makes auto-pairs much less aggressive.
+
 Buffer Level Pairs Setting
 --------------------------
 
