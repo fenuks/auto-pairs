@@ -1,6 +1,6 @@
 Auto Pairs
 ==========
-Insert or delete brackets, parens, quotes in pair.
+Insert or delete brackets, parenthesis, quotes in pair.
 
 Installation
 ------------
@@ -239,7 +239,7 @@ Options
 
         Default : <M-b>
 
-        Work with FlyMode, insert the key at the Fly Mode jumped postion
+        Work with FlyMode, insert the key at the Fly Mode jumped position
 
 *   g:AutoPairsMoveCharacter
 
@@ -248,12 +248,19 @@ Options
         Map <M-(> <M-)> <M-[> <M-]> <M-{> <M-}> <M-"> <M-'> to
         move character under the cursor to the pair.
 
-*   g:AutoPairsOnlyWhitespace
+*   g:AutoPairsSkipAfter
 
-        Default : 0
+        Default : ''
 
-        Set it to 1 to skip autopairs unless the following character is
-        whitespace. This makes auto-pairs much less aggressive.
+        Set it to regex to skip autopairs unless the following character doesn't
+        match it. This can be used to make auto-pairs much less aggressive.
+* 
+*   g:AutoPairsSkipBefore
+
+        Default : ''
+
+        Set it to regex to skip autopairs unless the preceding character doesn't
+        match it. This can be used to make auto-pairs much less aggressive.
 
 Buffer Level Pairs Setting
 --------------------------
@@ -276,7 +283,7 @@ Multibyte Pairs
 
         add or delete pairs base on g:AutoPairs
 
-        eg:
+        e.g.:
             au FileType html let b:AutoPairs = AutoPairsDefine({'<!--' : '-->'}, ['{'])
             add <!-- --> pair and remove '{' for html file
 
@@ -367,7 +374,7 @@ Multibyte Pairs
 
         will be better, only auto pair when at start of line or follow non-word text
 
-TroubleShooting
+Troubleshooting
 ---------------
     The script will remap keys ([{'"}]) <BS>,
     If auto pairs cannot work, use :imap ( to check if the map is corrected.

@@ -112,10 +112,13 @@ endif
 let s:Left = s:Go."\<LEFT>"
 let s:Right = s:Go."\<RIGHT>"
 
-if !exists('g:AutoPairsOnlyWhitespace')
-  let g:AutoPairsOnlyWhitespace = 0
+if !exists('g:AutoPairsSkipAfter')
+  let g:AutoPairsSkipAfter = ''
 end
 
+if !exists('g:AutoPairsSkipBefore')
+  let g:AutoPairsSkipBefore = ''
+end
 
 
 " unicode len
@@ -212,8 +215,11 @@ func! AutoPairsInsert(key)
     return a:key
   end
 
-  " Ignore auto close if set and current character is not whitespace
-  if g:AutoPairsOnlyWhitespace && after[-1:-1] =~ '\v\S'
+  " Ignore auto close if set and current character doesn't match regex
+  if g:AutoPairsSkipAfter isnot '' && after[-1:-1] =~ g:AutoPairsSkipAfter
+    return a:key
+  endif
+  if g:AutoPairsSkipBefore isnot '' && before[-1:-1] =~ g:AutoPairsSkipBefore
     return a:key
   endif
 
