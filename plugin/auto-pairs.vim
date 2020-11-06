@@ -216,10 +216,10 @@ func! AutoPairsInsert(key)
   end
 
   " Ignore auto close if set and current character doesn't match regex
-  if g:AutoPairsSkipAfter isnot '' && after[-1:-1] =~ g:AutoPairsSkipAfter
+  if g:AutoPairsSkipAfter isnot# '' && strcharpart(afterline, 0, 1) =~ g:AutoPairsSkipAfter
     return a:key
   endif
-  if g:AutoPairsSkipBefore isnot '' && before[-1:-1] =~ g:AutoPairsSkipBefore
+  if g:AutoPairsSkipBefore isnot# '' && before[-1:-1] =~ g:AutoPairsSkipBefore
     return a:key
   endif
 
